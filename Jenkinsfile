@@ -27,13 +27,13 @@ pipeline {
             parallel {
                 stage('Deploy to staging'){
                     steps {
-                        sh "scp -i /home/chris/tomcat.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+                        sh "scp -i /var/lib/jenkins/tomcat.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
                     }
                 }
 
                 stage('Deploy to production'){
                     steps {
-                        sh "scp -i /home/chris/tomcat.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                        sh "scp -i /var/lib/jenkins/tomcat.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
                     }
                 }
             }
